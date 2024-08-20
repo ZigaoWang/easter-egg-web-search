@@ -27,22 +27,23 @@ function triggerVirusEffect(videoSrc) {
     container.innerHTML = '';
     container.classList.remove('hidden');
 
-    const rows = 5;
-    const cols = 5;
+    const rows = 4;
+    const cols = 4;
     const totalVideos = rows * cols;
 
     for (let i = 0; i < totalVideos; i++) {
-        setTimeout(() => {
+        requestAnimationFrame(() => {
             const video = document.createElement('video');
             video.src = videoSrc;
             video.autoplay = true;
             video.loop = true;
             video.volume = 1.0; // Maximum volume
+            video.playsInline = true; // Prevents full-screen on iOS
             video.classList.add('fullscreen-video');
-            video.style.top = `${Math.floor(i / cols) * 20}%`;
-            video.style.left = `${(i % cols) * 20}%`;
+            video.style.top = `${Math.floor(i / cols) * 25}%`;
+            video.style.left = `${(i % cols) * 25}%`;
             container.appendChild(video);
             video.play();
-        }, Math.random() * 500); // Different delay for each video
+        });
     }
 }
