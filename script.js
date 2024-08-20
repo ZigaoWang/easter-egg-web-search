@@ -16,7 +16,7 @@ function performSearch() {
     if (rickrollKeywords.some(keyword => searchInput.includes(keyword))) {
         triggerVirusEffect('rickroll-container', 'assets/rickroll.mp4');
     } else if (whistleKeywords.some(keyword => searchInput.includes(keyword))) {
-        triggerVirusEffect('whistle-container', 'assets/whistle.mp4');
+        triggerVirusEffect('whistle-container', 'https://assets.zigao.wang/img/whistle.mp4');
     } else {
         window.location.href = `https://www.google.com/search?q=${encodeURIComponent(searchInput)}`;
     }
