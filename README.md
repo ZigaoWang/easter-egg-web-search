@@ -15,7 +15,10 @@ Easter Egg Web Search is a playful web application that provides a search bar wi
 
 ## Demo
 
-![Demo Video](https://assets.zigao.wang/img/CleanShot%202024-08-20%20at%2013.03.56.mp4)
+
+
+https://github.com/user-attachments/assets/217f2b76-9692-4cb9-a5d5-8af0a3858854
+
 
 
 ## File Structure
