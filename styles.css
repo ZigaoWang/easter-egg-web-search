@@ -6,6 +6,7 @@ body {
     height: 100vh;
     background-color: #f0f0f0;
     margin: 0;
+    overflow: hidden;
 }
 
 .container {
@@ -48,20 +49,22 @@ body {
 
 .fullscreen-video {
     position: absolute;
-    width: 30%;
-    height: auto;
+    width: 20%;
+    height: 20%;
     object-fit: cover;
     z-index: 1000;
     pointer-events: none;
-    animation: popup 0.1s linear;
-    transition: transform 0.5s ease;
+    opacity: 0;
+    animation: popup 0.5s linear forwards;
 }
 
 @keyframes popup {
     0% {
+        opacity: 0;
         transform: scale(0.5);
     }
     100% {
+        opacity: 1;
         transform: scale(1);
     }
 }
