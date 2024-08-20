@@ -8,6 +8,8 @@ document.getElementById('search-input').addEventListener('keypress', function(e)
     }
 });
 
+const videoCache = {};
+
 function performSearch() {
     const searchInput = document.getElementById('search-input').value.toLowerCase();
     const rickrollKeywords = ["rick roll", "rick astley", "never gonna give you up"];
@@ -16,7 +18,7 @@ function performSearch() {
     if (rickrollKeywords.some(keyword => searchInput.includes(keyword))) {
         triggerVirusEffect('rickroll-container', 'assets/rickroll.mp4');
     } else if (whistleKeywords.some(keyword => searchInput.includes(keyword))) {
-        triggerVirusEffect('whistle-container', 'https://assets.zigao.wang/img/whistle.mp4');
+        triggerVirusEffect('whistle-container', 'assets/whistle.mp4');
     } else {
         window.location.href = `https://www.google.com/search?q=${encodeURIComponent(searchInput)}`;
     }
@@ -26,17 +28,23 @@ function triggerVirusEffect(containerId, videoSrc) {
     const container = document.getElementById(containerId);
     container.innerHTML = '';
 
-    const video = document.createElement('video');
-    video.src = videoSrc;
-    video.autoplay = true;
-    video.loop = true;
-    video.volume = 1.0; // Maximum volume
-    video.classList.add('fullscreen-video');
+    let video;
+    if (videoCache[videoSrc]) {
+        video = videoCache[videoSrc].cloneNode(true);
+    } else {
+        video = document.createElement('video');
+        video.src = videoSrc;
+        video.autoplay = true;
+        video.loop = true;
+        video.volume = 1.0; // Maximum volume
+        video.classList.add('fullscreen-video');
+        videoCache[videoSrc] = video;
+    }
 
     container.appendChild(video);
     container.classList.remove('hidden');
 
-    for (let i = 1; i < 50; i++) {
+    for (let i = 1; i < 20; i++) {
         setTimeout(() => {
             const clone = video.cloneNode(true);
             clone.volume = 1.0; // Maximum volume for each clone
