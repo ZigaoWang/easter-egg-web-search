@@ -38,7 +38,7 @@ easter-egg-web-search/
 2. **Type a query in the search bar.**
 3. **Click the search button or press Enter.**
 4. **If your query contains special keywords, enjoy the video effect!**
-5. **Otherwise, you'll be redirected to a Google search for your query.
+5. **Otherwise, you'll be redirected to a Google search for your query.**
 
 ## Customization
 
