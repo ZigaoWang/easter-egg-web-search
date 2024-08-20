@@ -49,8 +49,8 @@ body {
 
 .fullscreen-video {
     position: absolute;
-    width: 25%;
-    height: 25%;
+    width: 20%;
+    height: 20%;
     object-fit: cover;
     z-index: 1000;
     pointer-events: none;

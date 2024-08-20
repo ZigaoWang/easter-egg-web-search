@@ -22,28 +22,50 @@ function performSearch() {
     }
 }
 
+function isMobile() {
+    return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || (window.innerWidth <= 800 && window.innerHeight <= 600);
+}
+
 function triggerVirusEffect(videoSrc) {
     const container = document.getElementById('video-container');
     container.innerHTML = '';
     container.classList.remove('hidden');
 
-    const rows = 4;
-    const cols = 4;
-    const totalVideos = rows * cols;
+    if (isMobile()) {
+        // Play a single video for mobile devices
+        const video = document.createElement('video');
+        video.src = videoSrc;
+        video.autoplay = true;
+        video.loop = true;
+        video.volume = 1.0; // Maximum volume
+        video.playsInline = true; // Prevents full-screen on iOS
+        video.classList.add('fullscreen-video');
+        video.style.top = '0';
+        video.style.left = '0';
+        video.style.width = '100%';
+        video.style.height = '100%';
+        container.appendChild(video);
+        video.play();
+    } else {
+        // Play a 5x5 grid of videos for non-mobile devices
+        const rows = 5;
+        const cols = 5;
+        const totalVideos = rows * cols;
 
-    for (let i = 0; i < totalVideos; i++) {
-        requestAnimationFrame(() => {
-            const video = document.createElement('video');
-            video.src = videoSrc;
-            video.autoplay = true;
-            video.loop = true;
-            video.volume = 1.0; // Maximum volume
-            video.playsInline = true; // Prevents full-screen on iOS
-            video.classList.add('fullscreen-video');
-            video.style.top = `${Math.floor(i / cols) * 25}%`;
-            video.style.left = `${(i % cols) * 25}%`;
-            container.appendChild(video);
-            video.play();
-        });
+        for (let i = 0; i < totalVideos; i++) {
+            requestAnimationFrame(() => {
+                const video = document.createElement('video');
+                video.src = videoSrc;
+                video.autoplay = true;
+                video.loop = true;
+                video.volume = 1.0; // Maximum volume
+                video.playsInline = true; // Prevents full-screen on iOS
+                video.classList.add('fullscreen-video');
+                video.style.top = `${Math.floor(i / cols) * 20}%`;
+                video.style.left = `${(i % cols) * 20}%`;
+                container.appendChild(video);
+                video.play();
+            });
+        }
     }
 }
