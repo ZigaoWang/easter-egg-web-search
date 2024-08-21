@@ -1,22 +1,27 @@
-document.getElementById('search-button').addEventListener('click', function() {
-    performSearch();
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('easter-eggs.json')
+        .then(response => response.json())
+        .then(data => {
+            const easterEggs = data;
+
+            document.getElementById('search-button').addEventListener('click', () => {
+                performSearch(easterEggs);
+            });
+
+            document.getElementById('search-input').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch(easterEggs);
+                }
+            });
+        });
 });
 
-document.getElementById('search-input').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-        performSearch();
-    }
-});
-
-function performSearch() {
+function performSearch(easterEggs) {
     const searchInput = document.getElementById('search-input').value.toLowerCase();
-    const rickrollKeywords = ["rick roll", "rick astley", "never gonna give you up"];
-    const whistleKeywords = ["whistle", "josh", "josh hutcherson"];
+    const matchedEgg = easterEggs.find(egg => egg.keywords.some(keyword => searchInput.includes(keyword)));
 
-    if (rickrollKeywords.some(keyword => searchInput.includes(keyword))) {
-        triggerVirusEffect('assets/rickroll.mp4');
-    } else if (whistleKeywords.some(keyword => searchInput.includes(keyword))) {
-        triggerVirusEffect('assets/whistle.mp4');
+    if (matchedEgg) {
+        triggerVirusEffect(matchedEgg.video);
     } else {
         window.location.href = `https://www.google.com/search?q=${encodeURIComponent(searchInput)}`;
     }
@@ -32,13 +37,12 @@ function triggerVirusEffect(videoSrc) {
     container.classList.remove('hidden');
 
     if (isMobile()) {
-        // Play a single video for mobile devices
         const video = document.createElement('video');
         video.src = videoSrc;
         video.autoplay = true;
         video.loop = true;
-        video.volume = 1.0; // Maximum volume
-        video.playsInline = true; // Prevents full-screen on iOS
+        video.volume = 1.0;
+        video.playsInline = true;
         video.classList.add('fullscreen-video');
         video.style.top = '0';
         video.style.left = '0';
@@ -47,7 +51,6 @@ function triggerVirusEffect(videoSrc) {
         container.appendChild(video);
         video.play();
     } else {
-        // Play a 5x5 grid of videos for non-mobile devices
         const rows = 5;
         const cols = 5;
         const totalVideos = rows * cols;
@@ -58,8 +61,8 @@ function triggerVirusEffect(videoSrc) {
                 video.src = videoSrc;
                 video.autoplay = true;
                 video.loop = true;
-                video.volume = 1.0; // Maximum volume
-                video.playsInline = true; // Prevents full-screen on iOS
+                video.volume = 1.0;
+                video.playsInline = true;
                 video.classList.add('fullscreen-video');
                 video.style.top = `${Math.floor(i / cols) * 20}%`;
                 video.style.left = `${(i % cols) * 20}%`;

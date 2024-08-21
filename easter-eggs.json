@@ -1,0 +1,14 @@
+[
+  {
+    "keywords": ["rick roll", "rick astley", "never gonna give you up"],
+    "video": "assets/rick-roll.mp4"
+  },
+  {
+    "keywords": ["whistle", "josh", "josh hutcherson"],
+    "video": "assets/whistle.mp4"
+  },
+  {
+    "keywords": ["nyan cat", "nyan", "cat"],
+    "video": "assets/nyan-cat.mp4"
+  }
+]
