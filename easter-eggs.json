@@ -14,5 +14,9 @@
   {
     "keywords": ["keyboard cat"],
     "video": "assets/keyboard-cat.mp4"
+  },
+  {
+    "keywords": ["genshin impact", "原神", "原神启动", "原神，启动！"],
+    "video": "assets/genshin-impact.mp4"
   }
 ]
