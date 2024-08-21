@@ -8,7 +8,11 @@
     "video": "assets/whistle.mp4"
   },
   {
-    "keywords": ["nyan cat", "nyan", "cat"],
+    "keywords": ["nyan cat"],
     "video": "assets/nyan-cat.mp4"
+  },
+  {
+    "keywords": ["keyboard cat"],
+    "video": "assets/keyboard-cat.mp4"
   }
 ]
